@@ -1,9 +1,7 @@
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
@@ -30,12 +28,16 @@ ul {
 li {
   font-size: 1.5em;
 }
+img {
+  max-width: 100%;
+}
 
 button {
   font-size: 1.5em;
   background-color: #53079a;
   border-radius: 25px;
   border: 15px solid #53079a;
+  font-weight: bold;
 }
 
 button:hover {
@@ -43,46 +45,85 @@ button:hover {
   border: 15px solid blueviolet;
 }
 
-.container {
-  max-width: 1400px;
-  margin: auto;
-}
-
 header {
   background-color: rgb(245, 245, 245);
 }
 
-header .logo {
-  background-image: url("../media/Logo.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  margin: 0;
-  padding: 20px;
+.nav {
+  border-bottom: 2px solid grey;
 }
 
-header .container-nav {
+.nav__toggle {
+  position: absolute;
+  cursor: pointer;
+  margin: 0 1rem;
+  right: 0;
+}
+
+.nav__toggle svg {
+  width: 40px;
+}
+
+.nav__toggle .close {
+  display: none;
+}
+
+.nav__toggle .close
+.nav__toggle .menu {
+  margin-top: 15px;
+}
+
+.nav__checkbox {
+  display: none;
+}
+
+.nav__menu {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
   align-items: center;
+  margin: 1rem;
 }
 
-header nav {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  padding-bottom: 25px;
+.nav__menu li {
+  list-style-type: none;
+  display: none;
 }
 
-header a {
-  padding: 5px 12px;
+.nav__menu li:first-child {
+  margin-right: auto;
+  display: block;
+}
+
+.nav__menu a {
   text-decoration: none;
+  color: inherit;
+  font-size: 20px;
   font-weight: bold;
-  color: black;
 }
 
-header a:hover {
+.nav__menu a:hover {
   color: blueviolet;
+}
+
+.menu__logo {
+  height: 40px;
+}
+
+.menu__logo img{
+  height: 100%;
+}
+
+#nav__checkbox:checked ~ ul.nav__menu li {
+  display: block;
+}
+
+#nav__checkbox:checked ~ label.nav__toggle .close {
+  display: block;
+}
+
+#nav__checkbox:checked ~ label.nav__toggle .menu {
+  display: none;
 }
 
 #hero {
@@ -125,6 +166,11 @@ header a:hover {
   padding: 100px 15px;
 }
 
+#sobre-mi h2 {
+  font-size: 3em;
+  margin-bottom: 30px;
+}
+
 #habilidades {
   background-color: rgb(30, 30, 30);
   color: white;
@@ -156,8 +202,8 @@ header a:hover {
 .carta:first-child {
   background-image: linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
     ),
     url("../media/html-css.jpg");
 }
@@ -165,8 +211,8 @@ header a:hover {
 .carta:nth-child(2) {
   background-image: linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
     ),
     url("../media/script.png");
 }
@@ -174,16 +220,16 @@ header a:hover {
 .carta:nth-child(3) {
   background-image: linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
     ),
     url("../media/github.png");
 }
 .carta:nth-child(4) {
   background-image: linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.7)
     ),
     url("../media/figma.jpg");
 }
@@ -225,8 +271,8 @@ header a:hover {
 }
 
 footer p {
-  margin: 80px;
-  padding: 0px;
+  margin: 20px;
+  padding: 10px;
   color: rgb(100, 100, 100);
 }
 
@@ -238,23 +284,21 @@ footer .container {
 }
 
 @media (min-width: 720px) {
-  header {
-    position: fixed;
-    width: 100%;
+  .nav__toggle {
+    display: none;
   }
-  header .logo {
-    margin-left: 20px;
-  }
-  header .container-nav {
+  .nav__menu {
     flex-direction: row;
-    justify-content: space-between;
   }
 
-  header nav {
-    flex-direction: row;
-    margin: 20px;
-    padding-bottom: 0;
-    padding-right: 20px;
+  .nav__menu li {
+    display: block;
+  }
+
+  .nav__menu a {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px;
   }
 
   #hero h1 {
@@ -296,7 +340,8 @@ footer .container {
   }
 
   #habilidades h3 {
-    margin-top: 0;
+    margin-top: 5px;
+    margin-bottom: 30px;;
   }
 
   #habilidades h2 {
@@ -304,7 +349,7 @@ footer .container {
   }
 
   #habilidades .carta {
-    padding: 50px;
+    padding: 30px;
     border-radius: 8px;
     background-size: cover;
     background-position: center center;
@@ -357,7 +402,7 @@ footer .container {
   }
 
   footer .container {
-    height: 200px;
+    height: 150px;
     justify-content: flex-end;
   }
 }
